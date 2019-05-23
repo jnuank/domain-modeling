@@ -1,34 +1,19 @@
 package com.handslab.domainmodeling.psyllium
 
 class Psyllium(
-    var status: Status = LightOffStatus()
+    val status: Status = Status.LightOff
 ) {
-    fun lightOn() {
-        val stat = status
-        status = when (stat) {
-            is LightOffStatus -> LightOnStatus(Color.RED)
-            is LightOnStatus -> {
-                when (stat.color) {
-                    Color.RED -> LightOnStatus(Color.BLUE)
-                    Color.BLUE -> LightOnStatus(Color.RED)
+    fun lightOn() : Status {
+        return when (status) {
+            is Status.LightOff -> Status.LightOn(Color.RED)
+            is Status.LightOn -> {
+                // メモ：smart castしている
+                when (status.color) {
+                    Color.RED -> Status.LightOn(Color.BLUE)
+                    Color.BLUE -> Status.LightOn(Color.RED)
                 }
             }
-            else -> LightOffStatus()
         }
     }
-    fun lightOff() {
-        status = LightOffStatus()
-    }
-//        var nintino = when (status) {
-//            is LightOffStatus -> {
-//                LightOnStatus(Color.RED)
-//            }
-//            is LightOnStatus -> {
-//                when (status.color) {
-//                    Color.RED -> Status.LightOn(Color.BLUE)
-//                }
-//            }
-//            Status.BLUE -> Status.RED
-//        }
-//    }
+    fun lightOff()  = Status.LightOff
 }

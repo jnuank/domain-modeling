@@ -11,58 +11,58 @@ class PsylliumTest {
     fun testNothingToRed() {
         val psylium = Psyllium()
 
-        psylium.lightOn()
-        assertThat(psylium.status, instanceOf(LightOnStatus::class.java))
+        val red = psylium.lightOn()
+        assertThat((red as Status.LightOn).color, equalTo(Color.RED))
     }
 
     @Test
     fun testRedToBlue() {
         val psylium = Psyllium()
 
-        psylium.lightOn()
-        psylium.lightOn()
+        val red = psylium.lightOn()
+        val blue = Psyllium(red).lightOn()
 
-        assertThat(psylium.status, equalTo(Status.BLUE))
+        assertThat((blue as Status.LightOn).color, equalTo(Color.BLUE))
     }
 
     @Test
     fun testBlueToRed() {
         val psylium = Psyllium()
 
-        psylium.lightOn()
-        psylium.lightOn()
-        psylium.lightOn()
+        val red = psylium.lightOn()
+        val blue = Psyllium(red).lightOn()
+        val red2 = Psyllium(blue).lightOn()
 
-        assertThat(psylium.status, equalTo(Status.RED))
+        assertThat((red2 as Status.LightOn).color, equalTo(Color.RED))
     }
 
     @Test
     fun testRedToNothing() {
         val psylium = Psyllium()
 
-        psylium.lightOn()
-        psylium.lightOff()
+        val red = psylium.lightOn()
+        val off = Psyllium(red).lightOff()
 
-        assertThat(psylium.status, equalTo(Status.NOTHING))
+        assertThat(off, instanceOf(Status.LightOff::class.java))
     }
 
     @Test
     fun testBlueToNothing() {
         val psylium = Psyllium()
 
-        psylium.lightOn()
-        psylium.lightOn()
-        psylium.lightOff()
+        val red = psylium.lightOn()
+        val blue = Psyllium(red).lightOn()
+        val off = Psyllium(blue).lightOff()
 
-        assertThat(psylium.status, equalTo(Status.NOTHING))
+        assertThat(off, instanceOf(Status.LightOff::class.java))
     }
 
     @Test
     fun testNothingToNothing() {
         val psylium = Psyllium()
 
-        psylium.lightOff()
+        val off = psylium.lightOff()
 
-        assertThat(psylium.status, equalTo(Status.NOTHING))
+        assertThat(off, instanceOf(Status.LightOff::class.java))
     }
 }
