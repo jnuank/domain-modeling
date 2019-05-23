@@ -1,7 +1,13 @@
 ## ユースケース
 
-![image](https://user-images.githubusercontent.com/33717710/57851382-5eb6d000-781b-11e9-96c6-de8b07dbd0dd.png)
+
+## ユースケース
+
+![image](https://user-images.githubusercontent.com/33717710/58271181-6dc2f280-7dc6-11e9-877b-24229d81c506.png)
+
 
 ## モデル
 
-![image](https://user-images.githubusercontent.com/33717710/57851414-7d1ccb80-781b-11e9-8856-58a7a05215a3.png)
+![image](https://user-images.githubusercontent.com/33717710/58271145-53891480-7dc6-11e9-81f8-11cbb3ab0984.png)
+
+
